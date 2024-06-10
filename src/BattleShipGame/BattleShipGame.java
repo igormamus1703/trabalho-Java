@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.Random;
+
 
 public class BattleShipGame extends JFrame implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -204,7 +204,7 @@ public class BattleShipGame extends JFrame implements Serializable {
         if (playerHits.contains(point) || playerMisses.contains(point) && isPlayerAttacking){
             System.out.println("This position has already been attacked.");
             setValidAttack(false);
-            return; // Ignore the attack
+            return; // Ignora o ataque e pula a vez da maquina, ou seja, não faz nada
         }
         
         if (ships.contains(point)) {
@@ -354,7 +354,7 @@ public class BattleShipGame extends JFrame implements Serializable {
                 throw new NoValidGameDataException("Nenhum jogo salvo");
             }
 
-            // Update the player board with loaded attacks from the machine
+            // coloca os ataques da maquina no board do jogador
             for (Point p : machineHits) {
                 JButton button = playerButtons[p.getX()][p.getY()];
                 button.setText("...");
@@ -366,7 +366,7 @@ public class BattleShipGame extends JFrame implements Serializable {
                 button.setForeground(Color.RED);
             }
 
-            // Update the machine board with loaded attacks from the player
+            // coloca os ataques do jogador no board da maquina
             for (Point p : playerHits) {
                 JButton button = machineButtons[p.getX()][p.getY()];
                 button.setText("...");
@@ -379,7 +379,7 @@ public class BattleShipGame extends JFrame implements Serializable {
             }
 
             gameStarted = true;
-            playerTurn = true; // Assume it's the player's turn after loading the game
+            playerTurn = true; // sempre o jogador que começa
             updateStatus();
             JOptionPane.showMessageDialog(this, "Estado do jogo carregado com sucesso!");
         } catch (IOException e) {
@@ -410,19 +410,19 @@ public class BattleShipGame extends JFrame implements Serializable {
     public void placeRandomMachineShips(int numberOfShips) throws IOException {
         Set<String> machineShipPositions = new HashSet<>();
 
-        // Generate unique random positions for the machine ships
+        // gera posições aleatórias para os navios da máquina
         while (machineShipPositions.size() < numberOfShips) {
             int x = random.nextInt(SIZE);
             int y = random.nextInt(SIZE);
             String position = x + "," + y;
 
-            // Add the position to the set if it's not already present
+            // coloca as posicções na lista verificando se ja não existem
             if (!machineShipPositions.contains(position)) {
                 machineShipPositions.add(position);
             }
         }
 
-        // Write the positions to the machineShips.csv file
+        // coloca os navios no arquivo CSV
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("data/machineShips.csv"))) {
             for (String position : machineShipPositions) {
                 writer.write(position + "\n");

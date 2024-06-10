@@ -3,7 +3,6 @@ package BattleShipGame;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
 import java.util.Random;
 
 public class ButtonHandler implements ActionListener {
@@ -56,7 +55,7 @@ public class ButtonHandler implements ActionListener {
         Point move;
         if(game.isValidAttack()){
     
-            // Generate a move that hasn't been attempted yet
+            // faz o ataque que não foi tentado ainda
             do {
                 x = random.nextInt(game.getSIZE());
                 y = random.nextInt(game.getSIZE());
@@ -65,13 +64,13 @@ public class ButtonHandler implements ActionListener {
         
             System.out.println("Ataque da máquina em: (" + x + ", " + y + ")");
             try {
-                // Handle the attack
+                // chama o metodo pra lidar com as jogadas 
                 game.handleAttack(x, y, game.getPlayerButtons(), game.getPlayerShips(), false);
             } catch (InvalidAttackException e) {
                 e.printStackTrace();
             }
         
-            // Set the player's turn and update the game status
+            // vez do jogador e salva o status pra caso a maquina tenha vencido nessa jogada
             game.setPlayerTurn(true);
             game.updateStatus();
         }
