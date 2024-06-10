@@ -1,0 +1,24 @@
+Vencedor: Jogador
+Placar - Jogador: 0 Máquina: 6
+================================
+Vencedor: Jogador
+Placar - Jogador: 0 Máquina: 6
+================================
+Vencedor: Jogador
+Placar - Jogador: 1 Máquina: 6
+================================
+Vencedor: Máquina
+Placar - Jogador: 6 Máquina: 3
+================================
+Vencedor: Máquina
+Placar - Jogador: 6 Máquina: 5
+================================
+Vencedor: Máquina
+Placar - Jogador: 6 Máquina: 2
+================================
+Vencedor: Máquina
+Placar - Jogador: 6 Máquina: 4
+================================
+Vencedor: Jogador
+Placar - Jogador: 2 Máquina: 6
+================================
